@@ -4,7 +4,7 @@ Simple Movie Ticketing App
 
 ## Description
 
-MAD-1 Project
+My journey of learning basics of web - html, css & python
 
 ## Getting Started
 
@@ -18,9 +18,4 @@ MAD-1 Project
 
 * run script local_run.sh (sh local_run.sh)
 
-
-
-## Author
-  
-ex. [@Ramees](21f3001934@ds.study.iitm.ac.in)
 
