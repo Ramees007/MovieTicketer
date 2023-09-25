@@ -1,8 +1,4 @@
-# Project Title
-
-Simple Movie Ticketing App 
-
-## Description
+# Simple Movie Ticketing App 
 
 My journey of learning basics of web - html, css & python
 
