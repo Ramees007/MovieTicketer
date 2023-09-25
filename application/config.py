@@ -11,3 +11,4 @@ class LocalDevConfig(Config):
 	DEBUG = True
 	SQLALCHEMY_DATABASE_URI = "sqlite:///TicketBook.sqlite3"
 	SECRET_KEY = "test_secret"
+	
