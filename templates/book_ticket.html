@@ -1,0 +1,39 @@
+{% extends "user_base.html" %}
+{% block title %}Booking{% endblock %}
+{% block user_name %}{{user_name}}{% endblock %}
+{% block content %}
+  
+
+ <div>
+
+  <p>Show: {{show.name}}</p>
+  <p>Venue: {{venue.name}}</p>
+  <p>Time: {{timeslot.start_time}} - {{timeslot.end_time}}</p>
+  <p>Available seats : {{available_seats}}</p>
+
+ <form action="/book_ticket?show_id={{show.id}}&venue_id={{venue.id}}&timeslot_id={{timeslot.id}}" method="post">
+  
+<div class="mb-3">
+  <label for="tickets">Number of tickets: </label>
+<select name="tickets" id="tickets" value="1">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+</select>
+</div>
+
+<p>Price: {{price}}</p>
+
+ <button type="submit" class="primary-button" name = "submit">Continue</button>
+</form>
+
+
+
+</div>
+
+
+
+{% endblock %}
+

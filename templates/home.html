@@ -1,0 +1,54 @@
+{% extends "user_base.html" %}
+{% block title %}Home{% endblock %}
+{% block user_name %}{{user_name}}{% endblock %}
+{% block head %}
+{{ super() }}
+<style type="text/css">
+
+  .base-list li{
+    background: #F5F5F5;
+  }
+  .disabled{
+    background: lightgrey;
+  }
+
+</style>
+{% endblock %}
+{% block content %}
+
+<div>
+
+  {% if not venues_data %}
+  <p>No shows currently listed, Come back later</p>
+  {% endif %}
+
+  <div class="col">
+    <ul class="base-list">
+     {% for venue in venues_data %}
+     <li class="base-list-item">
+       <div>
+         <h3>{{venue.name}}</h3>
+         <div style="display: flex;column-gap: 15px; flex-wrap: wrap;">
+           {% for show_ts in venues_data[venue] %}
+           {% if  show_ts %}
+           <div class="base-card">
+            <h5 class="center">{{show_ts.show.name}}</h5>
+            <h7>Time: {{show_ts.timeslot.start_time}} - {{show_ts.timeslot.end_time}}</h7>
+
+            {% if show_ts.is_open %}
+            <a href="/book_ticket?show_id={{show_ts.show.id}}&venue_id={{venue.id}}&timeslot_id={{show_ts.timeslot.id}}" class="primary-button">Book</a>
+            {% else %}
+            <div class="primary-button disabled">Housefull</div>
+            {% endif %}
+          </div>
+          {%  endif %}
+          {% endfor %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>  
+  </div>
+
+</div>
+{% endblock %}
+

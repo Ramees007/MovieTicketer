@@ -1,0 +1,98 @@
+{% extends "admin_base.html" %}
+{% block title %}Admin Home{% endblock %}
+{% block user_name %}{{user_name}}{% endblock %}
+{% block head %}
+{{ super() }}
+<style type="text/css">
+
+ ul#venues li {
+  display:inline-flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 20px;
+  border:1px solid #000;
+  text-align: center;
+  max-width: 250px;
+  min-width: 150px;
+  min-height: 200px;
+  margin-top: 10px;
+}
+
+ul#venues{
+  display: flex;
+  flex-wrap: wrap;
+  column-gap:20px;
+  margin-top: 20px;
+}
+ul#venues li:last-child{
+  border:none;
+  justify-content: center;
+  align-items: center;
+}
+
+.base-card, .base-card-grey{
+  margin-top: 4px;
+}
+
+.non-overflow{
+  text-overflow: ellipsis;
+  white-space: wrap; 
+  overflow: hidden;
+}
+
+</style>
+{% endblock %}
+{% block content %}
+
+
+
+<div>
+
+
+  {% if not venues_data %}
+  <p>No venues added, Add a venue</p>
+  {% endif %}
+
+  <ul id="venues">
+
+   {% for venue in venues_data %}
+   <li>
+     <div >
+       <h3 class ="non-overflow">{{venue.name}}</h3>
+
+       {% for show in venues_data[venue] %}
+       {% if  show %}
+       <div class="base-card-grey">
+        <h5>{{show.name}}</h5>
+        <a href="/admin/show_details/{{show.id}}">More</a>
+      </div>
+      {%  endif %}
+      {% endfor %}
+      <a href="/admin/add_show/{{venue.id}}">
+        <img src="/static/add_circle.svg" alt="add button" class="rounded-circle" width="40" height="40">
+      </a>
+      
+      <div>
+        <a href="/admin/venue/venue_details/{{venue.id}}">More on Venue</a>    
+      </div>
+
+    </div>
+  </li>
+  {% endfor %}
+
+  <li>
+    <div>
+     <a href="/admin/add_venue">
+      <img src="/static/add_circle.svg" alt="add button" class="rounded-circle" width="100" height="100" />
+    </a>
+  </div>
+  
+</li>
+</ul>  
+
+</div>
+
+
+{% endblock %}
+
+

@@ -1,0 +1,65 @@
+{% extends "admin_base.html" %}
+{% block title %}Search{% endblock %}
+{% block user_name %}{{user_name}}{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+
+  form  label, button {
+      margin-left: 16px
+    }
+
+  </style>
+{% endblock %}
+{% block content %}
+  
+
+ <div>
+
+  <div class="row">
+    
+     <div class="col-3"></div>
+     <div class="col-9" style="display: flex; flex-direction: row-reverse;">
+  <form action="/admin/search" method="get">
+    <label for="q" >Search</label>
+    <input type="text"  id="q" name="q" value="{{q}}">
+
+    <label for="location" >Choose Location: </label>
+  <select name="location" id="location">
+    <option value="all_locations" {% if 'all_locations' == selected_location %} selected="selected"{% endif %}>All</option>
+    {% for location in locations %}
+    <option value={{location}} {% if location == selected_location %} selected="selected"{% endif %}>{{location}}</option>
+    {% endfor %}
+  </select>
+
+   <button type="submit" name = "submit">Submit</button>
+  </form>
+  </div>
+
+ <ul class="base-list">
+{% for v in venues %}
+
+<li class="base-list-item base-card">
+  <div class="row align-items-center">
+
+    <div class="col-10">
+      <h5>{{v.name}}</h5>
+      <h7>{{v.place}}, {{v.location}}</h7>
+    </div>
+    
+    <div class="col-2">
+            <a href="/admin/venue/venue_details/{{v.id}}" class="primary-button" >View</a>
+       </div>
+  </div>
+
+</li>
+
+
+{% endfor %}
+</ul>
+
+</div>
+
+
+
+{% endblock %}

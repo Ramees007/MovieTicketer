@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% block head %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="/static/style.css">
+  {% endblock %}
+</head>
+<body>
+
+<div class="container">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+     <a class="navbar-brand" href="/admin/home">{% block user_name %}{% endblock %}</a>
+     <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+
+      {% if show_home_in_nav %}
+       <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/home">Home</a>
+        </li>
+      </ul>
+      {% else %}
+       <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/summary">Summary</a>
+        </li>
+      </ul>
+      {% endif %}
+
+      {% if not hide_search_in_nav %}
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/search">Search</a>
+        </li>
+      </ul>
+      {% endif %}
+
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Sign Out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+{% block content %}{% endblock %}
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

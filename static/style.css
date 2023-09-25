@@ -1,0 +1,70 @@
+.primary-button{
+	display:block;
+	width:100px;
+	height:40px;
+	color:#fff;
+	background: blue;
+}
+
+.small-button{
+	display:block;
+	width:80px;
+	height:30px;
+	color:#fff;
+	background: skyblue;
+}
+
+.red-button{
+	display:block;
+	width:100px;
+	height:40px;
+	color:#fff;
+	background: red;
+}
+
+.red-large-button{
+	text-decoration:none;
+	margin-top: 40px;
+	border-radius:10px;
+	color:#fff;
+	background: red;
+	padding: 10px;
+}
+
+
+.primary-button, .red-button, .small-button{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	text-decoration:none;
+	margin:5px auto;
+	border-radius:10px;
+}
+
+.base-card{
+	padding: 10px;
+	border:1px solid #000; 
+	border-radius:10px;
+}
+.base-card-grey{
+	padding: 10px;
+	border:1px solid gray; 
+	border-radius:10px;
+}
+
+.base-list{
+	list-style: none;
+	padding: 10px; 
+}
+
+.base-list-item{
+	margin-bottom: 10px; 
+	padding: 10px; 
+	border-radius:10px;
+}
+
+.center{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}

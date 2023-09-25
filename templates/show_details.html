@@ -1,0 +1,55 @@
+{% extends "admin_base.html" %}
+{% block title %}Show Details{% endblock %}
+{% block user_name %}{{user_name}}{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+
+  </style>
+{% endblock %}
+{% block content %}
+
+ <div>
+
+  <h1>{{show.name}}</h1>
+
+  {% if venues %}
+  {% else %}
+  <p>Not running in any venues</p>
+  {% endif %}
+
+<ul id="venues" class="base-list">
+ {% for venue in venues %}
+ {% for timeslot in venue_ts[venue.id] %}
+ <li>
+ <div class="base-card row align-items-center base-list-item">
+  <div class="col-10">
+     <h3>{{venue.name}}</h3>
+     <h4>{{timeslot.start_time}} - {{timeslot.end_time}}</h4>
+  </div>
+  <div class="col-2">
+    <a href="/admin/show/edit?show_id={{show.id}}&venue_id={{venue.id}}&timeslot={{timeslot.id}}" class="primary-button">Edit</a>
+    <a href="/admin/show/remove?show_id={{show.id}}&venue_id={{venue.id}}&timeslot={{timeslot.id}}" class="red-button">Remove</a>
+  </div>
+    
+ </div>
+ </li>
+ {% endfor %}
+ {% endfor %}
+</ul>  
+
+<div>
+<h6 style="margin-bottom: 10px; color: red;">Deleting the show removes all data related to this show</h6>
+    <a href="/admin/show/delete/{{show.id}}" class="red-large-button">Delete {{show.name}}</a>
+  
+  
+</div>
+
+</div>
+
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+{% endblock %}

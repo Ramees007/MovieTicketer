@@ -1,0 +1,29 @@
+{% extends "user_base.html" %}
+{% block title %}Rate Show{% endblock %}
+{% block user_name %}{{user_name}}{% endblock %}
+{% block content %}
+  
+
+ <div>
+
+  <h5>{{show_name}}</h5>
+  <p>What do yoy think about {{show_name}} that you had watched with us?</p>
+  <p>Your reviews will help other in decision making, please keep contributing</p>
+
+
+  
+ <form action="/user/rate?show_id={{show_id}}" method="post">
+  
+  <div class="mb-3">
+    <label for="rating" class="form-label">Rating (Out of 5)</label>
+    <input type="number" class="form-control" id="rating" name="rating" min="0" max="5" step="0.1" required>
+  
+   <button type="submit" class="primary-button" name = "submit">Submit</button>
+</form>
+
+
+</div>
+
+
+
+{% endblock %}

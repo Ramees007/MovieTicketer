@@ -1,0 +1,72 @@
+{% extends "user_base.html" %}
+{% block title %}Search{% endblock %}
+{% block user_name %}{{user_name}}{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+
+  form  label, button {
+      margin-left: 16px
+    }
+
+  </style>
+{% endblock %}
+{% block content %}
+  
+
+ <div>
+
+  <div class="row">
+    
+     <div class="col-3"></div>
+     <div class="col-9" style="display: flex; flex-direction: row-reverse;">
+  <form action="/user/search" method="get">
+    <label for="q" >Search</label>
+    <input type="text"  id="q" name="q" value="{{q}}">
+
+    <label for="tags" >Choose Tag: </label>
+    <select name="tags" id="tags">
+    <option value="all_tags" {% if selected_tag == 'all_tags' %} selected="selected"{% endif %}>All</option>
+    {% for tag in tags %}
+    <option value={{tag.id}} {% if tag.id|string == selected_tag %} selected="selected"{% endif %}>{{tag.name}}</option>
+    {% endfor %}
+  </select>
+
+    <label for="rating_above" >Choose Rating: </label>
+  <select name="rating_above" id="rating_above">
+    <option value="all_ratings" {% if 'all_ratings' == selected_rating %} selected="selected"{% endif %}>All</option>
+    {% for rating in range(1, 5) %}
+    <option value={{rating}} {% if rating|string == selected_rating %} selected="selected"{% endif %}>Greater than {{rating}}</option>
+    {% endfor %}
+  </select>
+
+   <button type="submit" name = "submit">Submit</button>
+  </form>
+  </div>
+
+ <ul class="base-list">
+{% for show in shows %}
+
+<li class="base-list-item base-card">
+  <div class="row align-items-center">
+
+    <div class="col-10">
+      <h5>{{show.name}}</h5>
+    </div>
+    
+    <div class="col-2">
+            <a href="/user/show_details/{{show.id}}" class="primary-button" >View</a>
+       </div>
+  </div>
+
+</li>
+
+
+{% endfor %}
+</ul>
+
+</div>
+
+
+
+{% endblock %}

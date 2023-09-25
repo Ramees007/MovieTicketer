@@ -1,0 +1,27 @@
+{% extends "user_base.html" %}
+{% block title %}Booking Confirmation{% endblock %}
+{% block user_name %}{{user_name}}{% endblock %}
+{% block content %}
+  
+
+ <div>
+
+  <p>Show: {{show.name}}</p>
+  <p>Venue: {{venue.name}}</p>
+  <p>Time: {{timeslot.start_time}} - {{timeslot.end_time}}</p>
+  <p>Tickets needed : {{ticket_count}}</p>
+  <p>Price per ticket : {{price}}</p>
+  <p>Total amount : {{total_amount}}</p>
+  
+
+<a href="/book_ticket/confirm?show_id={{show.id}}&venue_id={{venue.id}}&timeslot_id={{timeslot.id}}&tickets={{ticket_count}}" class="primary-button">
+  Book Now
+</a>
+
+
+</div>
+
+
+
+{% endblock %}
+

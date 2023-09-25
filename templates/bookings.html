@@ -1,0 +1,51 @@
+{% extends "user_base.html" %}
+{% block title %}Bookings{% endblock %}
+{% block user_name %}{{user_name}}{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+
+ 
+  </style>
+{% endblock %}
+{% block content %}
+
+
+<div>
+
+{% if not bookings %}
+<p> No bookings for this user yet</p>
+{% endif %}
+
+<ul class="base-list">
+{% for booking in bookings %}
+
+<li class="base-list-item base-card">
+	<div class="row align-items-center">
+
+		<div class="col-10">
+			<h5>{{booking[1].name}}</h5>
+		  <h6>{{booking[2].name}}  </h6>
+		<h7>Booked on: {{booking[0].booked_time}}  For the show from {{booking[3].start_time}}-{{booking[3].end_time}}</h7>
+		</div>
+		
+		<div class="col-2">
+            <a href="/user/rate?show_id={{booking[1].id}}" class="primary-button" >Rate</a>
+       </div>
+	</div>
+
+</li>
+
+
+{% endfor %}
+</ul>
+
+
+
+
+</div>
+
+
+
+{% endblock %}
+

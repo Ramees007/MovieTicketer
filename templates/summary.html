@@ -1,0 +1,66 @@
+{% extends "admin_base.html" %}
+{% block title %}Admin Home{% endblock %}
+{% block user_name %}{{user_name}}{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+
+
+  </style>
+{% endblock %}
+{% block content %}
+
+
+
+ <div>
+
+  <div class="row">
+    <div class="col-9"></div>
+    <div class="col-3" style="display: flex; flex-direction: row-reverse;">
+      <form action="/admin/summary" method='get'>
+  <label for="locations">Choose location: </label>
+  <select name="locations" id="locations">
+    <option value="all_locations" {% if selected_location=='all_locations' %} selected="selected"{% endif %}>All</option>
+    {% for location in locations%}
+    <option value={{location}} {% if selected_location==location %} selected="selected"{% endif %}>{{location}}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" value="Submit" >
+</form>
+    </div>
+  </div>
+
+
+  {% if not show_date_dict %}
+  <p>No data for selected location</p>
+  {% else %}
+
+  <table style="width:100%" class="table table-striped">
+    <thead class="thead-light">
+  <tr>
+    <th class="thead-light">Show Name</th>
+    {% for date in dates %}
+    <th scope="col">{{date}}</th> 
+    {% endfor %}
+  </tr>
+</thead>
+  {% for show in show_date_dict %}
+  <tr>
+    <td>{{show.name}}</td>
+    {% for date in show_date_dict[show] %}
+    <td>{{show_date_dict[show][date]}}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+ 
+</table>
+
+{% endif %}
+
+
+</div>
+
+
+{% endblock %}
+
+
